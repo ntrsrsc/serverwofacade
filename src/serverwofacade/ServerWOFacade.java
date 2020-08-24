@@ -7,6 +7,8 @@
 package serverwofacade;
 public class ServerWOFacade {
     public static void main(String[] args) {
+        
+        /*
         ScheduleServer scheduleServer = new ScheduleServer();
 	scheduleServer.startBooting();
 	scheduleServer.readSystemConfigFile();
@@ -22,6 +24,10 @@ public class ServerWOFacade {
 	scheduleServer.destoryListeners();
 	scheduleServer.destoryContext();
 	scheduleServer.shutdown();
+        */
+        Facade obj = Facade.getMyFacadeObject();
+        obj.startFunc();
+        obj.stopFunc();
     }
     
 }
