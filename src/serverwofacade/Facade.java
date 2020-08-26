@@ -11,20 +11,30 @@ package serverwofacade;
  */
 public class Facade {
     private static Facade FacadeObj = null;
-        private Facade() {}
-        public static Facade getMyFacadeObject() {
-            if (FacadeObj == null) {
-                FacadeObj = new Facade();
-            } 
-            return FacadeObj;
+    private Facade() {}
+    private ScheduleServer scheduleServer = new ScheduleServer();
+    public static Facade getMyFacadeObject() {
+        if (FacadeObj == null) {
+            FacadeObj = new Facade();
+        } 
+        return FacadeObj;
+    }
+    public void startFunc() {
+        scheduleServer.startBooting();
+        scheduleServer.readSystemConfigFile();
+	scheduleServer.init();
+	scheduleServer.initializeContext();
+	scheduleServer.initializeListeners();
+	scheduleServer.createSystemObjects();
+	
         }
-        public void startFunc() {
-            ScheduleServer startServer = new ScheduleServer();
-            startServer.startBooting();
-        }
-        public void stopFunc() {
-            ScheduleServer stopServer = new ScheduleServer();
-            stopServer.shutdown();
-        }
+    public void stopFunc() {
+        scheduleServer.releaseProcesses();
+	scheduleServer.destory();
+	scheduleServer.destroySystemObjects();
+	scheduleServer.destoryListeners();
+	scheduleServer.destoryContext();
+	scheduleServer.shutdown();
+    }
     
 }

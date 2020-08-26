@@ -27,6 +27,8 @@ public class ServerWOFacade {
         */
         Facade obj = Facade.getMyFacadeObject();
         obj.startFunc();
+        System.out.println("Start working......");
+        System.out.println("After work done.........");
         obj.stopFunc();
     }
     
